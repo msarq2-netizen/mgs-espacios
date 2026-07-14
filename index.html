@@ -43,12 +43,28 @@
     nav.solid .nav-wa{background:var(--gold);border-color:var(--gold);color:white}
     .nav-wa:hover{background:var(--gold)!important;border-color:var(--gold)!important;color:white!important}
 
-    /* HERO — video de fondo */
+    /* HERO — slider videos + fotos */
     #hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
-    .hero-video{
-      position:absolute;inset:0;width:100%;height:100%;
-      object-fit:cover;z-index:0;
+
+    /* Cada slide ocupa todo el hero */
+    .hero-slide{
+      position:absolute;inset:0;z-index:0;
+      opacity:0;transition:opacity 1.2s ease-in-out;
     }
+    .hero-slide.active{opacity:1;z-index:1}
+    .hero-slide.prev{opacity:0;z-index:0}
+
+    /* Slide de foto */
+    .hero-slide.photo{
+      background-size:cover;background-position:center;
+    }
+
+    /* Slide de video */
+    .hero-slide.video video{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;
+    }
+
     .hero-overlay{
       position:absolute;inset:0;z-index:1;
       background:linear-gradient(110deg,rgba(0,0,0,.74) 0%,rgba(0,0,0,.38) 55%,rgba(0,0,0,.10) 100%);
@@ -326,12 +342,27 @@
   </div>
 </nav>
 
-<!-- HERO — video de fondo autoplay -->
+<!-- HERO — slider videos + fotos -->
 <section id="hero">
-  <video class="hero-video" autoplay muted playsinline loop>
-    <source src="video-01.mp4" type="video/mp4"/>
-    <source src="video-05.mp4" type="video/mp4"/>
-  </video>
+
+  <!-- Slides: mezcla de videos y fotos -->
+  <div class="hero-slide video active" id="hs0">
+    <video src="video-21.mp4" muted playsinline preload="auto"></video>
+  </div>
+  <div class="hero-slide photo" id="hs1" style="background-image:url('foto-embed-04.jpeg')"></div>
+  <div class="hero-slide video" id="hs2">
+    <video src="video-22.mp4" muted playsinline preload="auto"></video>
+  </div>
+  <div class="hero-slide photo" id="hs3" style="background-image:url('foto-embed-01.jpeg')"></div>
+  <div class="hero-slide video" id="hs4">
+    <video src="video-23.mp4" muted playsinline preload="auto"></video>
+  </div>
+  <div class="hero-slide photo" id="hs5" style="background-image:url('foto-embed-06.jpeg')"></div>
+  <div class="hero-slide video" id="hs6">
+    <video src="video-24.mp4" muted playsinline preload="auto"></video>
+  </div>
+  <div class="hero-slide photo" id="hs7" style="background-image:url('foto-embed-09.jpeg')"></div>
+
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Estudio de Arquitectura · Buenos Aires</span>
@@ -624,6 +655,49 @@
   // Nav solid on scroll
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => { nav.classList.toggle('solid', window.scrollY > 40) });
+
+  // Hero slider: alterna videos y fotos
+  const slides = [...document.querySelectorAll('.hero-slide')];
+  let cur = 0;
+
+  function showSlide(n) {
+    const prev = slides[cur];
+    cur = (n + slides.length) % slides.length;
+    const next = slides[cur];
+
+    // Pausa el video del slide anterior
+    const prevVid = prev.querySelector('video');
+    if(prevVid) prevVid.pause();
+
+    // Activa el nuevo
+    prev.classList.remove('active');
+    next.classList.add('active');
+
+    // Reproduce el video si es slide de video
+    const nextVid = next.querySelector('video');
+    if(nextVid) {
+      nextVid.currentTime = 0;
+      nextVid.play().catch(()=>{});
+      // Avanza al siguiente slide cuando termina el video (max 8s)
+      let advanced = false;
+      const advance = () => { if(!advanced){ advanced=true; showSlide(cur+1); } };
+      nextVid.onended = advance;
+      setTimeout(advance, 8000);
+    } else {
+      // Foto: 5 segundos
+      setTimeout(() => showSlide(cur+1), 5000);
+    }
+  }
+
+  // Arranca el primer slide (video)
+  const firstVid = slides[0].querySelector('video');
+  if(firstVid) {
+    firstVid.play().catch(()=>{});
+    let advanced = false;
+    const advance = () => { if(!advanced){ advanced=true; showSlide(1); } };
+    firstVid.onended = advance;
+    setTimeout(advance, 8000);
+  }
 
   // Play/pause videos inline
   function playVid(wrap) {
