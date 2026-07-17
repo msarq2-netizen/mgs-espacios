@@ -248,40 +248,35 @@ nav.scrolled .menu-btn span{background:var(--black)}
 }
 .section-link:hover{opacity:1}
 
-/* ─── FOTO GRID — EDITORIAL ─── */
-#portfolio{padding:80px 0 0}
-.foto-grid{display:grid;gap:2px}
-.fg-2{grid-template-columns:1fr 1fr}
-.fg-3{grid-template-columns:1fr 1fr 1fr}
-.fg-a{grid-template-columns:7fr 5fr}
-.foto-item{
+/* ─── PORTFOLIO GRID ─── */
+#portfolio{padding:64px 0 0}
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3px;
+}
+@media(max-width:768px){.project-grid{grid-template-columns:1fr 1fr}}
+.project-item{
   position:relative;overflow:hidden;
   background:var(--black);
+  height:260px;
 }
-.foto-item.tall{aspect-ratio:3/4}
-.foto-item.mid{aspect-ratio:4/3}
-.foto-item.sq{aspect-ratio:1}
-.foto-item.wide{aspect-ratio:16/9}
-.foto-item img{
+.project-item img{
   width:100%;height:100%;object-fit:cover;display:block;
-  filter:grayscale(100%);opacity:.85;
-  transition:opacity .7s var(--ease),transform .9s var(--ease),filter .7s var(--ease);
+  filter:grayscale(100%) contrast(1.05);
+  transition:transform .8s var(--ease),filter .6s var(--ease);
 }
-.foto-item:hover img{opacity:1;transform:scale(1.03);filter:grayscale(0%)}
-.foto-caption{
+.project-item:hover img{transform:scale(1.05);filter:grayscale(0%) contrast(1)}
+.project-label{
   position:absolute;bottom:0;left:0;right:0;
-  padding:20px 24px;
-  background:linear-gradient(0deg,rgba(0,0,0,.75) 0%,transparent 100%);
-  opacity:0;transform:translateY(8px);
-  transition:opacity .4s var(--ease),transform .4s var(--ease);
+  padding:16px 20px;
+  background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,transparent 100%);
+  opacity:0;
+  transition:opacity .35s;
 }
-.foto-item:hover .foto-caption{opacity:1;transform:none}
-.foto-cap-label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:4px}
-.foto-cap-txt{font-size:13px;font-weight:600;letter-spacing:-.01em;color:var(--white)}
-@media(max-width:768px){
-  .fg-2,.fg-3,.fg-a{grid-template-columns:1fr}
-  .foto-item.tall,.foto-item.mid,.foto-item.sq,.foto-item.wide{aspect-ratio:4/3}
-}
+.project-item:hover .project-label{opacity:1}
+.project-tag{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:3px}
+.project-name{font-size:13px;font-weight:600;color:var(--white)}
 
 /* ─── SERVICIOS ─── */
 #servicios{background:var(--black);color:var(--white)}
@@ -614,73 +609,44 @@ footer{
   </div>
 </div>
 
-<!-- PORTFOLIO — fotos en grilla editorial -->
+<!-- PORTFOLIO -->
 <section id="portfolio">
-  <!-- Fila 1: 2 fotos grandes -->
-  <div class="foto-grid fg-2">
-    <div class="foto-item tall reveal">
-      <img src="foto-embed-14.png" alt="Diseño interior · MGS"/>
-      <div class="foto-caption">
-        <div class="foto-cap-label">Diseño interior</div>
-        <div class="foto-cap-txt">Habitación · Reforma integral</div>
-      </div>
+  <div class="project-grid reveal">
+    <div class="project-item">
+      <img src="foto-embed-06.jpeg" alt="Construcción · MGS"/>
+      <div class="project-label"><div class="project-tag">Construcción</div><div class="project-name">Estructura · CABA</div></div>
     </div>
-    <div class="foto-item tall reveal">
-      <img src="foto-embed-13.png" alt="Ampliación · MGS"/>
-      <div class="foto-caption">
-        <div class="foto-cap-label">Expansión</div>
-        <div class="foto-cap-txt">Ampliación residencial</div>
-      </div>
-    </div>
-  </div>
-  <!-- Fila 2: 3 fotos medianas -->
-  <div class="foto-grid fg-3 reveal">
-    <div class="foto-item mid">
-      <img src="foto-embed-06.jpeg" alt="Obra · MGS"/>
-      <div class="foto-caption">
-        <div class="foto-cap-label">Obra</div>
-        <div class="foto-cap-txt">Construcción · CABA</div>
-      </div>
-    </div>
-    <div class="foto-item mid">
-      <img src="foto-embed-02.jpeg" alt="Portfolio · MGS"/>
-      <div class="foto-caption">
-        <div class="foto-cap-label">Portfolio</div>
-        <div class="foto-cap-txt">Vivienda · Buenos Aires</div>
-      </div>
-    </div>
-    <div class="foto-item mid">
-      <img src="foto-embed-10.jpeg" alt="Reforma · MGS"/>
-      <div class="foto-caption">
-        <div class="foto-cap-label">Reforma</div>
-        <div class="foto-cap-txt">Local comercial</div>
-      </div>
-    </div>
-  </div>
-  <!-- Fila 3: grande + doble stack -->
-  <div class="foto-grid fg-a reveal">
-    <div class="foto-item tall">
+    <div class="project-item">
       <img src="foto-embed-01.jpeg" alt="Ampliación · MGS"/>
-      <div class="foto-caption">
-        <div class="foto-cap-label">Obra</div>
-        <div class="foto-cap-txt">Ampliación · Reforma</div>
-      </div>
+      <div class="project-label"><div class="project-tag">Obra</div><div class="project-name">Ampliación residencial</div></div>
     </div>
-    <div class="foto-grid fg-2" style="grid-column:2;display:grid;grid-template-rows:1fr 1fr;gap:2px">
-      <div class="foto-item">
-        <img src="foto-embed-08.jpeg" alt="Detalle · MGS" style="height:100%;object-fit:cover"/>
-        <div class="foto-caption">
-          <div class="foto-cap-label">Detalle</div>
-          <div class="foto-cap-txt">Construcción</div>
-        </div>
-      </div>
-      <div class="foto-item">
-        <img src="foto-embed-05.jpeg" alt="Reforma · MGS" style="height:100%;object-fit:cover"/>
-        <div class="foto-caption">
-          <div class="foto-cap-label">Reforma</div>
-          <div class="foto-cap-txt">Interior residencial</div>
-        </div>
-      </div>
+    <div class="project-item">
+      <img src="foto-embed-02.jpeg" alt="Vivienda · MGS"/>
+      <div class="project-label"><div class="project-tag">Portfolio</div><div class="project-name">Vivienda · Buenos Aires</div></div>
+    </div>
+    <div class="project-item">
+      <img src="foto-embed-10.jpeg" alt="Reforma · MGS"/>
+      <div class="project-label"><div class="project-tag">Reforma</div><div class="project-name">Local comercial</div></div>
+    </div>
+    <div class="project-item">
+      <img src="foto-embed-08.jpeg" alt="Detalle · MGS"/>
+      <div class="project-label"><div class="project-tag">Detalle</div><div class="project-name">Construcción</div></div>
+    </div>
+    <div class="project-item">
+      <img src="foto-embed-05.jpeg" alt="Interior · MGS"/>
+      <div class="project-label"><div class="project-tag">Interior</div><div class="project-name">Reforma integral</div></div>
+    </div>
+    <div class="project-item">
+      <img src="foto-embed-11.jpeg" alt="Ejecución · MGS"/>
+      <div class="project-label"><div class="project-tag">Obra</div><div class="project-name">Ejecución · CABA</div></div>
+    </div>
+    <div class="project-item">
+      <img src="foto-embed-12.jpeg" alt="Proyecto · MGS"/>
+      <div class="project-label"><div class="project-tag">Proyecto</div><div class="project-name">GBA · Residencial</div></div>
+    </div>
+    <div class="project-item">
+      <img src="foto-embed-09.jpeg" alt="Comercial · MGS"/>
+      <div class="project-label"><div class="project-tag">Comercial</div><div class="project-name">Local comercial</div></div>
     </div>
   </div>
 </section>
@@ -780,30 +746,6 @@ footer{
   </div>
 </section>
 
-<!-- MÁS FOTOS -->
-<div class="foto-grid fg-3 reveal" style="margin-top:2px">
-  <div class="foto-item mid">
-    <img src="foto-embed-11.jpeg" alt="Obra · MGS"/>
-    <div class="foto-caption">
-      <div class="foto-cap-label">Obra</div>
-      <div class="foto-cap-txt">Ejecución · CABA</div>
-    </div>
-  </div>
-  <div class="foto-item mid">
-    <img src="foto-embed-12.jpeg" alt="Proyecto · MGS"/>
-    <div class="foto-caption">
-      <div class="foto-cap-label">Proyecto</div>
-      <div class="foto-cap-txt">GBA · Residencial</div>
-    </div>
-  </div>
-  <div class="foto-item mid">
-    <img src="foto-embed-09.jpeg" alt="Comercial · MGS"/>
-    <div class="foto-caption">
-      <div class="foto-cap-label">Comercial</div>
-      <div class="foto-cap-txt">Local comercial</div>
-    </div>
-  </div>
-</div>
 
 <!-- SOBRE EL ESTUDIO -->
 <section id="sobre" class="section">
