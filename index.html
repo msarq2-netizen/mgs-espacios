@@ -77,12 +77,12 @@ nav.scrolled{
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--line);
 }
-.nav-logo img{
-  height:30px;width:auto;
-  filter:brightness(0) invert(1);
-  transition:filter .35s;
+.nav-logo{
+  font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;color:rgba(255,255,255,.9);
+  transition:color .35s;
 }
-nav.scrolled .nav-logo img{filter:none}
+nav.scrolled .nav-logo{color:var(--black)}
 .nav-links{display:flex;gap:36px;list-style:none}
 .nav-links a{
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
@@ -531,9 +531,7 @@ footer{
 
 <!-- NAV -->
 <nav id="main-nav">
-  <a class="nav-logo" href="#hero">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAikAAAC+CAYAAADwb5/MAAAulElEQVR4nO3dd7xl0/3/8RdmhI9MRo3OECRGjU6UaCE6Eb6iRxhCJoVERA9JlIgwSvCLmghCEIQogwTRZqJEJ3pvw/AeU+/vj7VvXOOWc/Zae++zz/k8H494JGZmrf2Zc/bd53NW+SxwzjnnnHPOOeecc84555xzzjnnnHPOOeecc84555xzzjnnnHPOOeecc84555xzzjnnnHPOOeecc84555xzzjnnnHPOOeecc84555xzzjnnnHPOOeecc84555xzzjnnnHPOOeecc84555xzzrWSGVJ3aGZdff2ZpOTXc65dmNkcwBrACsDSwKLAAsDswGzAYGAqMAl4B3gLeB54GngIuEfSM6UH7pxzBfEkxZXOzGYEvgisDHwJWAJYBJiP8IFswMxAFzARmAC8nf16HngBeBR4GHhY0qRy/wXpmNlwYEdgc2Al4n8mXwVuAK4Cbqjza+Occ7VOUvq7Vi9+JelnKa9fNjM7Dji40b/fSkmhmS0CbA1sDKwLDE3U9UfA/cBNwN+BeyU1c1+UzsxmAr4JjATWLPBS7wAXAKf7CItzro46KUmZAqwk6eGUMZTFzFYkfBjP1GibqpMUMxsKfAvYHVi9pMu+CFwK/F7S4yVds2FmthlwEmEEqSzTgEuAoyQ9VeJ1nXMuSiclKQD3AmtKmpYyjqJl37zvBlZppl1VSYqZLQb8GNiNsJaiKrcCJwB/r3p0xczmBM4gTO1UZQpwGnCEpPEVxuGcc03XSUkKwL3AmtJqZ/z8TAdKUMxsKPAtYHdg9ZIu+yJwKfB7SY+XdM2GmdlmwEmEEaSyTAMuAY6S9FSJ13XOuSidlKQA3MusJsKeKWIok5ktQ/gwHktr5o0bkSSqey/gQ8AEYFrRB3JMkYHY/dJYHNgKeB04G9u6S/pI2BoP3fxF6vpVHAAAAABJRU5ErkJggg==" alt="MGS Espacios"/>
-  </a>
+  <a class="nav-logo" href="#hero">MGS Espacios</a>
   <ul class="nav-links">
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#servicios">Servicios</a></li>
